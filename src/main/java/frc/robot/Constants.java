@@ -16,4 +16,9 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
+  public static class DriveConstants {
+    /** Duty cycle change per second. 1.0 = 0 to full power in 1 second. Smaller is slower. */
+    public static final double kPowerSlewRate = 0.25;
+  }
 }

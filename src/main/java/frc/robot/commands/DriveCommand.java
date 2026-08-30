@@ -16,24 +16,24 @@ public class DriveCommand extends Command {
 
     @Override
     public void initialize() {
-        drive.setLeftPower(0);
-        drive.setRightPower(0);
+        drive.stop();
     }
 
     @Override
     public void execute() {
-        if (gamepad.getRightX() > 0.05) {
-            drive.setLeftPower(-gamepad.getRightX());
-            drive.setRightPower(gamepad.getRightX());
-        }
-        else {
-            drive.setLeftPower(gamepad.getLeftY());
-            drive.setRightPower(gamepad.getLeftY());
-        }
+        double throttle = applyDeadband(gamepad.getLeftY());
+        double turn = applyDeadband(gamepad.getRightX());
+
+        drive.setLeftPower(-throttle + turn);
+        drive.setRightPower(-throttle - turn);
     }
 
+    @Override
+    public void end(boolean interrupted) {
+        drive.stop();
+    }
 
-
-
-    
+    private static double applyDeadband(double value) {
+        return Math.abs(value) < 0.1 ? 0.0 : value;
+    }
 }

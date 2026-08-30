@@ -3,7 +3,7 @@
     "type": "java",
     "name": "frcJava",
     "port": 8349,
-    "target": "169.254.9.201",
-    "project": "BabySeat 2"
+    "target": "10.54.49.2",
+    "project": "BabySeat-2"
   }
 ]
